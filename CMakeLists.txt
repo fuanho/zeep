@@ -1,3 +1,3 @@
 project("zeep")
 
-add_executable(zeep "zeep.cpp")
+add_executable(zeep src/zeep.cpp)
