@@ -1,6 +1,9 @@
-#include "compressor.h"
+#include "huffman.h"
 
-class Huffman:public Compressor
-{
+string Huffman::compress(string &src) {
+    return src;
+}
 
-};
+string Huffman::decompress(string &src) {
+    return src;
+}
