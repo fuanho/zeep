@@ -1,6 +1,4 @@
-#ifndef ZEEP_COMPRESSOR_H
-#define ZEEP_COMPRESSOR_H
-
+#pragma once
 #include <string>
 
 using namespace std;
@@ -11,5 +9,3 @@ public:
 
     virtual string decompress(string &src) = 0;
 };
-
-#endif //ZEEP_COMPRESSOR_H
