@@ -2,6 +2,8 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <huffman.h>
+#include <compressor.h>
 
 using namespace std;
 
@@ -26,7 +28,10 @@ void writeToFile(const string &path, const string &content) {
 
 int main(int argsCount, char **args) {
     string content = readFromFile(args[2]);
-    printf("%s", content.c_str());
+    Compressor *cmp = new Huffman();
+    string dst = cmp->compress(content);
+    printf("%s", dst.c_str());
     writeToFile(args[3], content);
+    delete cmp;
     return 0;
 }
