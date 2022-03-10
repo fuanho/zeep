@@ -17,9 +17,19 @@ Node *Huffman::releaseTree(Node *root) {
 }
 
 string Huffman::compress(string &src) {
+    // TODO: Implement Huffman Coding compress.
     return src;
 }
 
 string Huffman::decompress(string &src) {
+    // TODO: Implement Huffman Coding decompress.
     return src;
+}
+
+void Huffman::readTree(basic_iostream<char> stream) {
+    // TODO: Load Huffman tree from a stream.
+}
+
+void Huffman::writeTree(basic_iostream<char> stream) {
+    // TODO: Write Huffman tree to a stream.
 }
