@@ -30,7 +30,7 @@ int main(int argsCount, char **args) {
     string content = readFromFile(args[2]);
     Compressor *cmp = new Huffman();
     string dst = cmp->compress(content);
-    printf("%s", dst.c_str());
+    printf("%s\n", dst.c_str());
     writeToFile(args[3], content);
     delete cmp;
     return 0;
