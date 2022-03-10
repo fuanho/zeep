@@ -16,7 +16,7 @@ Normal Options:
     -d, --decompress <type>     Decompress the input file.
 
 Compress type:
-    --huffman                   Use Huffman Coding. (Default)
+    --huffman <tree_file>       Use Huffman Coding. (Default)
     --huffman-adaptive          User Adaptive Huffman Coding.
 ```
 
@@ -24,11 +24,12 @@ Compress type:
 
 ```shell
 # Compress by Huffman Coding
-$ zeep --huffman <input_file> <output_file>
+$ zeep --huffman <tree_file> <input_file> <output_file>
 ```
 
 ### Decompress File
 
 ```shell
-$ zeep -d --huffman <input_file> <output_file>
+# Decompress by Huffman Coding
+$ zeep -d --huffman <tree_file> <input_file> <output_file>
 ```
