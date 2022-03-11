@@ -33,9 +33,8 @@ string Huffman::compress(string& src) {
     for (size_t i = 0; i < srcCount; i++)
     {
         char c = src.at(i);
-        cout << c << endl;
         iter = charCount.find(c);
-        if (iter != charCount.end())
+        if (iter == charCount.end())
         {
             charCount.insert(pair<char, int>(c, 1));
         }
