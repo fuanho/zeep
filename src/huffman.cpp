@@ -94,6 +94,7 @@ void Huffman::recursiveBuildCharTable(Node *root, map<char, string> &table, stri
     // Walk to right child
     charCode.append("1");
     recursiveBuildCharTable(root->right, table, charCode);
+    charCode = charCode.substr(0, charCode.size() - 1);
 }
 
 bool Huffman::nodeComparator(Node *a, Node *b) {
