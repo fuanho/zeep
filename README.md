@@ -23,13 +23,13 @@ Compress type:
 ### Compress File
 
 ```shell
-# Compress by Huffman Coding
+# Compress by Huffman Coding and save Huffman tree to a file
 $ zeep --huffman <tree_file> <input_file> <output_file>
 ```
 
 ### Decompress File
 
 ```shell
-# Decompress by Huffman Coding
+# Decompress by Huffman Coding with loaded Huffman tree
 $ zeep -d --huffman <tree_file> <input_file> <output_file>
 ```
