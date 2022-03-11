@@ -27,11 +27,14 @@ void writeToFile(const string &path, const string &content) {
 }
 
 int main(int argsCount, char **args) {
-    string content = readFromFile(args[2]);
-    Compressor *cmp = new Huffman();
-    string dst = cmp->compress(content);
-    printf("%s", dst.c_str());
-    writeToFile(args[3], content);
+    string content = readFromFile(args[1]);
+    Huffman *hf = new Huffman();
+    Compressor *cmp = hf;
+    string compressedData = cmp->compress(content);
+    string decompressedData = cmp->decompress(compressedData);
+    printf("Before compress: %s\n", content.c_str());
+    printf("After decompress: %s\n", decompressedData.c_str());
+    writeToFile(args[2], decompressedData);
     delete cmp;
     return 0;
 }
