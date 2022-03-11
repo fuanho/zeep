@@ -5,7 +5,7 @@
 
 class Node {
 public:
-    string value;
+    char value = '\0';
     unsigned int weight = 0;
     Node *left = nullptr;
     Node *right = nullptr;
@@ -16,6 +16,10 @@ private:
     Node *tree = nullptr;
 
     Node *releaseTree(Node *root);
+
+    static bool nodeComparator(Node *a, Node *b);
+
+    Node *buildHuffmanTree(string &src);
 
 public:
 
