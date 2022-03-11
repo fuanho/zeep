@@ -22,6 +22,7 @@ Node *Huffman::releaseTree(Node *root) {
 
 string Huffman::compress(string &src) {
     this->tree = buildHuffmanTree(src);
+    map<char, string> charTable = buildCharTable(this->tree);
     // TODO: Encoding string from src to dst
     return src;
 }
@@ -64,6 +65,31 @@ Node *Huffman::buildHuffmanTree(string &src) {
     }
     // The only one node in the list is the tree root
     return sortedNodes.front();
+}
+
+map<char, string> Huffman::buildCharTable(Node *root) {
+    map<char, string> table;
+    string charCode;
+    recursiveBuildCharTable(root, table, charCode);
+    return table;
+}
+
+void Huffman::recursiveBuildCharTable(Node *root, map<char, string> &table, string &charCode) {
+    if (!root) return;
+    // If the root is the end, save it into the table
+    if (!root->left && !root->right) {
+        //Save to the table
+        table.insert(pair<char, string>(root->value, charCode));
+        // Remove the last character in the stream
+        charCode = charCode.substr(0, charCode.size() - 1);
+        return;
+    }
+    // Walk to left child
+    charCode.append("0");
+    recursiveBuildCharTable(root->left, table, charCode);
+    // Walk to right child
+    charCode.append("1");
+    recursiveBuildCharTable(root->right, table, charCode);
 }
 
 bool Huffman::nodeComparator(Node *a, Node *b) {

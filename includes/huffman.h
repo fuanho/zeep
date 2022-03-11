@@ -1,6 +1,8 @@
 #pragma once
 
 #include <iostream>
+#include <map>
+#include <sstream>
 #include "compressor.h"
 
 class Node {
@@ -20,6 +22,10 @@ private:
     static bool nodeComparator(Node *a, Node *b);
 
     Node *buildHuffmanTree(string &src);
+
+    map<char, string> buildCharTable(Node *root);
+
+    void recursiveBuildCharTable(Node *root, map<char, string> &table, string &charCode);
 
 public:
 
