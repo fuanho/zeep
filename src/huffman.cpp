@@ -104,7 +104,22 @@ bool Huffman::nodeComparator(Node *a, Node *b) {
 
 string Huffman::decompress(string &src) {
     string dst;
+    size_t offset = 0;
+    while (offset < src.size()) {
+        char c = recursiveDecompress(this->tree, src, offset);
+        dst.push_back(c);
+    }
     return dst;
+}
+
+char Huffman::recursiveDecompress(Node *root, string &src, size_t &offset) {
+    if (!root->left && !root->right)
+        return root->value;
+    if (src.at(offset) == '0')
+        return recursiveDecompress(root->left, src, ++offset);
+    else
+        return recursiveDecompress(root->right, src, ++offset);
+
 }
 
 void Huffman::readTree(basic_iostream<char> stream) {

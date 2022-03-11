@@ -27,6 +27,8 @@ private:
 
     void recursiveBuildCharTable(Node *root, map<char, string> &table, string &charCode);
 
+    char recursiveDecompress(Node *root, string &src, size_t &offset);
+
 public:
 
     Huffman();
