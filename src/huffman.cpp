@@ -23,8 +23,12 @@ Node *Huffman::releaseTree(Node *root) {
 string Huffman::compress(string &src) {
     this->tree = buildHuffmanTree(src);
     map<char, string> charTable = buildCharTable(this->tree);
-    // TODO: Encoding string from src to dst
-    return src;
+    // Map each char into the Huffman code
+    string dst;
+    for (char c:src) {
+        dst.append(charTable.at(c));
+    }
+    return dst;
 }
 
 Node *Huffman::buildHuffmanTree(string &src) {
@@ -98,8 +102,8 @@ bool Huffman::nodeComparator(Node *a, Node *b) {
 }
 
 string Huffman::decompress(string &src) {
-    // TODO: Implement Huffman Coding decompress.
-    return src;
+    string dst;
+    return dst;
 }
 
 void Huffman::readTree(basic_iostream<char> stream) {
