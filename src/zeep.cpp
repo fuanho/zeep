@@ -1,9 +1,8 @@
-#include <iostream>
-#include <fstream>
-#include <sstream>
+
 #include <string>
 #include <huffman.h>
 #include <compressor.h>
+#include <util.h>
 
 using namespace std;
 
@@ -19,18 +18,13 @@ string readFromFile(const string &path) {
     return str.str();
 }
 
-void writeToFile(const string &path, const string &content) {
-    ofstream ofs;
-    ofs.open(path);
-    ofs.write(content.c_str(), content.size());
-    ofs.close();
-}
-
 int main(int argsCount, char **args) {
     string content = readFromFile(args[2]);
     Compressor *cmp = new Huffman();
-    string dst = cmp->compress(content);
-    printf("%s\n", dst.c_str());
+    string tmp = cmp->compress(content);
+    string dst = cmp->decompress(tmp);
+    printf("input :\n%s\n", content.c_str());
+    printf("output:\n%s\n", dst.c_str());
     writeToFile(args[3], content);
     delete cmp;
     return 0;
