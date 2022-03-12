@@ -18,6 +18,7 @@ Node *Huffman::releaseTree(Node *root) {
     delete releaseTree(root->left);
     delete releaseTree(root->right);
     delete root;
+    return nullptr;
 }
 
 string Huffman::compress(string &src) {
