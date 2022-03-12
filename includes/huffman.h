@@ -33,7 +33,7 @@ public:
 
     Huffman();
 
-    ~Huffman();
+    ~Huffman() override;
 
     string compress(string &src) override;
 
