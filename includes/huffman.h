@@ -39,7 +39,7 @@ public:
 
     string decompress(string &src) override;
 
-    void readTree(basic_iostream<char> stream);
+    void readTree(basic_istream<char> &stream);
 
-    void writeTree(basic_iostream<char> stream);
+    void writeTree(basic_ostream<char> &stream);
 };
