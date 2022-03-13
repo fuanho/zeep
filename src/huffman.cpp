@@ -26,7 +26,7 @@ string Huffman::compress(string &src) {
     map<char, string> charTable = buildCharTable(this->tree);
     // Map each char into the Huffman code
     string dst;
-    for (char c:src) {
+    for (char c: src) {
         dst.append(charTable.at(c));
     }
     return dst;
@@ -35,7 +35,7 @@ string Huffman::compress(string &src) {
 Node *Huffman::buildHuffmanTree(string &src) {
     // Calculate show times of each character
     map<char, Node *> nodes;
-    for (char c : src) {
+    for (char c: src) {
         if (nodes.find(c) == nodes.end()) {
             Node *n = new Node();
             n->value = c;
@@ -47,7 +47,7 @@ Node *Huffman::buildHuffmanTree(string &src) {
     }
     // Transform the map to a list
     deque<Node *> sortedNodes;
-    for (pair<char, Node *> p : nodes) {
+    for (pair<char, Node *> p: nodes) {
         sortedNodes.push_back(p.second);
     }
     // Sort the list
@@ -123,10 +123,14 @@ char Huffman::recursiveDecompress(Node *root, string &src, size_t &offset) {
 
 }
 
-void Huffman::readTree(basic_iostream<char> stream) {
+void Huffman::readTree(basic_istream<char> &stream) {
     // TODO: Load Huffman tree from a stream.
 }
 
-void Huffman::writeTree(basic_iostream<char> stream) {
+void Huffman::writeTree(basic_ostream<char> &stream) {
     // TODO: Write Huffman tree to a stream.
+    map<char, string> charTable = buildCharTable(this->tree);
+    for (pair<char, string> p: charTable) {
+
+    }
 }
