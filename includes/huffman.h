@@ -13,6 +13,8 @@ class Node {
 public:
     char value = '\0';
     unsigned int weight = 0;
+    bool fakeNode = false;
+    unsigned int leafs = 0;
     Node *left = nullptr;
     Node *right = nullptr;
 };

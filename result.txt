@@ -1,0 +1,10 @@
+input:
+aebacddaca
+
+output:
+Huffman:
+0110111000111101001110
+
+Adapt Huffman:
+1110110011000101110011
+

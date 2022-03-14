@@ -13,7 +13,7 @@ string operator*(string a, unsigned int b) {
 }
 
 bool cmp(pair<char, int> &a, pair<char, int> &b) {
-    return a.second < b.second;
+    return (a.second < b.second);
 }
 
 Huffman::Huffman() {
@@ -45,13 +45,15 @@ string Huffman::compress(string &src) {
 }
 
 Node *Huffman::buildHuffmanTree(string &src) {
-    // Calculate show times of each character
+    // Calculate probability of each character
     map<char, Node *> nodes;
     for (char c: src) {
         if (nodes.find(c) == nodes.end()) {
             Node *n = new Node();
             n->value = c;
             n->weight = 1;
+            n->fakeNode = false;
+            n->leafs = 0;
             nodes.insert(pair<char, Node *>(c, n));
             continue;
         }
@@ -73,9 +75,19 @@ Node *Huffman::buildHuffmanTree(string &src) {
         sortedNodes.pop_front();
         // Combine the nodes
         Node *combined = new Node();
+        unsigned int firstLeafs = 0;
+        unsigned int secondLeafs = 0;
+
+        if(first->fakeNode) firstLeafs = first->leafs;
+        if(second->fakeNode) secondLeafs = second->leafs;
+
+        if(firstLeafs > secondLeafs) combined->leafs = firstLeafs++;
+        else combined->leafs = secondLeafs++;
+
         combined->left = first;
         combined->right = second;
         combined->weight = first->weight + second->weight;
+        combined->fakeNode = true;
         sortedNodes.push_front(combined);
         // Sort the list
         sort(sortedNodes.begin(), sortedNodes.end(), nodeComparator);
@@ -112,7 +124,9 @@ void Huffman::recursiveBuildCharTable(Node *root, map<char, string> &table, stri
 
 bool Huffman::nodeComparator(Node *a, Node *b) {
     // Sort by ASC
-    return a->weight < b->weight;
+    return (a->weight < b->weight) ||
+            ((a->weight == b->weight) && (a->fakeNode < b->fakeNode)) ||
+            ((a->weight == b->weight) && (a->fakeNode == b->fakeNode) && (a->leafs < b->leafs));
 }
 
 string Huffman::decompress(string &src) {
